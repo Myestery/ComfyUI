@@ -54,5 +54,9 @@ jobs:
             Updates ComfyUI version from `${{ steps.current.outputs.current_version }}` to `${{ steps.version.outputs.version }}`
 
             **Triggered by:** ${{ github.event_name == 'release' && format('[Release {0}]({1})', github.event.release.tag_name, github.event.release.html_url) || 'Manual workflow dispatch' }}
+
+            **After merging:**
+            1. Create a new release tag to publish the updated container
+            2. Update frontend's `ci-tests-e2e.yaml` container reference if needed
           labels: automation
           commit-message: "chore: bump ComfyUI to ${{ steps.version.outputs.version }}"
